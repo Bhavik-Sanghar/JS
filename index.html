@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Table Manager</h1>
+        <div class="form-group">
+            <label for="rows">Enter Number of Rows:</label>
+            <input type="number" name="rows" id="rows" min="1">
+        </div>
+        <div class="form-group">
+            <label for="cols">Enter Number of Columns:</label>
+            <input type="number" name="cols" id="cols" min="1">
+        </div>
+        <button class="btn" onclick="table_maker()">Create Table</button>
+
+        <div class="form-group">
+            <label for="row_del">Enter Row Number to Delete:</label>
+            <input type="number" name="row_del" id="row_del" min="1">
+            <button class="btn" onclick="del_row()">Delete Row</button>
+        </div>
+
+        <div class="form-group">
+            <label for="col_del">Enter Column Number to Delete:</label>
+            <input type="number" name="col_del" id="col_del" min="1">
+            <button class="btn" onclick="del_col()">Delete Column</button>
+        </div>
+
+        <div class="form-group">
+            <label for="row_add">Enter Number of Rows to Add:</label>
+            <input type="number" name="row_add" id="row_add" min="1">
+            <button class="btn" onclick="row_add()">Add Rows</button>
+        </div>
+
+        <div class="form-group">
+            <label for="col_add">Enter Number of Columns to Add:</label>
+            <input type="number" name="col_add" id="col_add" min="1">
+            <button class="btn" onclick="col_add()">Add Columns</button>
+        </div>
+
+        <div id="table_area"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

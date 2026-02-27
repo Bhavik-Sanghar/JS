@@ -1,0 +1,33 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+table{
+    /* border: 2px solid; */
+    border-collapse: collapse;
+    table-layout: fixed;
+    height: 75vh;
+    width: 75vw;
+}
+td{
+    border: 2px solid;
+    /* width: 10px; */
+    text-align: center;
+}
+
+/* #N-red,#N-green,#N-yellow ,#S-red,#S-green,#S-yellow,#E-red,#E-green,#E-yellow,#W-red,#W-green,#W-yellow{
+    border-radius: 50%;
+    border: none;
+    /* border-left: 2px solid; */
+} */
+
+.corner{
+    border: none
+}

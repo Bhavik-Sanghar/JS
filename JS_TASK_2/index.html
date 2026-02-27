@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic-Lights</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <table id="cross-road">
+            <tr >
+                <td colspan="2" rowspan="2" class="corner"></td>
+                <td colspan="3" id="N-time"> N </td>
+                <td colspan="2" rowspan="2" class="corner"></td>
+            </tr>
+            <tr>
+                <!-- <td colspan="2"></td> -->
+                <td id="N-red">red</td>
+                <td id="N-green">green</td>
+                <td id="N-yellow">yellow</td>
+                <!-- <td colspan="2"></td> -->
+            </tr>
+            <tr>
+                <td rowspan="3" id="W-time"> W </td>
+                <td id="W-yellow">yellow</td>
+                <td colspan="3" rowspan="3"></td>
+                <td id="E-red">red</td>
+                <td rowspan="3" id="E-time"> E </td>
+            </tr>
+            <tr>
+                <!-- <td></td> -->
+                <td id="W-green">green</td>
+                <!-- <td colspan="3"></td> -->
+                <td id="E-green">green</td>
+                <!-- <td></td> -->
+            </tr>
+            <tr>
+                <!-- <td></td> -->
+                <td id="W-red">red</td>
+                <!-- <td colspan="3"></td> -->
+                <td id="E-yellow">yellow</td>
+                <!-- <td></td> -->
+            </tr>
+            <tr>
+                <td colspan="2" rowspan="2" class="corner"></td>
+                <td id="S-yellow">yellow</td>
+                <td id="S-green">green</td>
+                <td id="S-red">red</td>
+                <td colspan="2" rowspan="2" class="corner"></td>
+            </tr>
+            <tr>
+                <!-- <td colspan="2"></td> -->
+                <td colspan="3" id="S-time"> S </td>
+                <!-- <td colspan="2"></td> -->
+            </tr>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
