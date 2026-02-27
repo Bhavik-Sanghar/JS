@@ -1,44 +1,45 @@
-let size = 2;
 const table = document.getElementById("table_area");
+let size = 2;
 
-function make_table() {
+let availableHeight = window.innerHeight - 100; // Subtracting 100px for score display and margins
+let availableWidth = window.innerWidth;
+
+let random_color = () =>{
+    return {
+        r : Math.floor(Math.random() * 200),
+        g : Math.floor(Math.random() * 200),
+        b : Math.floor(Math.random() * 200)
+    }
+};
+
+
+function createTable() {
   table.innerHTML = ``;
-  // set grid columns/rows so cells split available space evenly
-  table.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-  table.style.gridTemplateRows = `repeat(${size}, 1fr)`;
-
-  // create size*size cells (using td elements for minimal change)
-  for (let i = 0; i < size * size; i++) {
-    const cell = document.createElement("td");
-    cell.style.background = "pink";
-    table.appendChild(cell);
+  let total = size * size;
+  let count = 0;
+  let r = random_color().r;
+  let g = random_color().g;
+  let b = random_color().b;
+  let odd_cell = Math.floor(Math.random() * total);
+  for (let i = 0; i < size; i++) {
+    const row = document.createElement("tr");
+    for (let j = 0; j < size; j++) {
+      const cell = document.createElement("td");
+    //   cell.textContent = `${i + 1},${j + 1}`;
+      if(count == odd_cell){
+        cell.style.opacity = 0.6;
+      }
+      count++;
+      cell.style.backgroundColor = `rgb(${r},${g},${b})`;
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
   }
 }
 
-function canGrow(nextSize) {
-  // compute future cell pixel size and ensure it's not too small
-  const rect = table.getBoundingClientRect();
-  const availableW = rect.width;
-  const availableH = rect.height;
-  const cellPx = Math.min(availableW / nextSize, availableH / nextSize);
-  // threshold: stop growing when cells would be smaller than 14px
-  return cellPx >= 14;
-}
-
-table.addEventListener("click", (e) => {
-  e.preventDefault();
-  const next = size + 1;
-  if (canGrow(next)) {
-    size = next;
-    make_table();
-  } else {
-    console.log('maximum size reached — cells would be too small');
-  }
+table.addEventListener("click", () => {
+  size++;
+  createTable();
 });
 
-// build initial grid and also rebuild on resize so cells stay square and fit
-make_table();
-window.addEventListener('resize', () => {
-  // keep current size but rebuild grid so CSS grid adapts to new container size
-  make_table();
-});
+createTable();
