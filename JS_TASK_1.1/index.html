@@ -11,11 +11,26 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: #eec0c8;
+      }
+
+      #top-area {
+        /* From https://css.glass */
+        width: 100%;
+        background: rgba(255, 255, 255, 0.19);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(4.8px);
+        -webkit-backdrop-filter: blur(4.8px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
       }
       #score {
         height: 10vh;
       }
-      #game{
+      #game {
         height: 90vh;
         width: 100%;
       }
@@ -30,16 +45,24 @@
         border-collapse: collapse;
       }
       td {
-        border: 1px solid seashell;
+        border: 1px solid #eec0c8;
         border-radius: 25px;
         text-align: center;
         height: inherit;
         width: inherit;
       }
+      .game-disable {
+        pointer-events: none;
+        opacity: 0.6;
+      }
     </style>
   </head>
   <body>
-    <h2 id="score">score</h2>
+    <div id="top-area">
+      <h2 id="score">score</h2>
+      <h2 id="time"></h2>
+      <h2 id="btn"><button id="pause-btn">Pause</button></h2>
+    </div>
     <div id="game"><table id="table_area"></table></div>
   </body>
   <script src="script.js"></script>
