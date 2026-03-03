@@ -86,10 +86,10 @@ const skills = ["PHP" ,"JAVA" , "SQL","Node"];
 
 skills.forEach(element => {
     const row = tech_table.insertRow(-1);
-    row.innerHTML = `<td><input type="checkbox" name="${element}" value="${element}"> ${element} </input></td>
-                    <td><input type="radio" name="${element}_level value = "Beginer">Beginer</td>
-                    <td><input type="radio" name="${element}_level value = "Mideator">Mideator</td>
-                    <td><input type="radio" name="${element}_level value = "Expert">Expert</td>`
+    row.innerHTML = `<td><input type="checkbox" name="${element}"="${element}"> ${element} </input></td>
+                    <td><input type="radio" name="${element}_level = "Beginer">Beginer</td>
+                    <td><input type="radio" name="${element}_level = "Mideator">Mideator</td>
+                    <td><input type="radio" name="${element}_level = "Expert">Expert</td>`
 });
 
 const lang_table = document.getElementById("lang");
@@ -98,7 +98,43 @@ const languages = ["Hindi" , "English" , "Gujarati"];
 languages.forEach(e => {
   const row = lang_table.insertRow(-1);
   row.innerHTML = `<td><input type="checkbox" name="${e}">${e}</td>
-                    <td><input type="checkbox" name="${e}_read" value="${e}_read">Read</td>
-                    <td><input type="checkbox" name="${e}_write" value="${e}_write">Write</td>
-                    <td><input type="checkbox" name="${e}_speak" value="${e}_speak">Speak</td>`
+                    <td><input type="checkbox" name="${e}_read"="${e}_read">Read</td>
+                    <td><input type="checkbox" name="${e}_write"="${e}_write">Write</td>
+                    <td><input type="checkbox" name="${e}_speak"="${e}_speak">Speak</td>`
+})
+
+
+
+function showError(message) {
+    const errorDiv = document.getElementById("errorBox");
+    errorDiv.innerHTML += `<p>${message}</p>`;
+}
+
+const form = document.getElementById("job-application");
+
+form.addEventListener("submit",(e)=>{
+  e.preventDefault();
+
+  //val for basic info
+  const f_name = form.elements["f_name"];
+  const l_name = form.elements["l_name"];
+  const designation = form.elements["designation"];
+  const address_1 = form.elements["address_1"];
+  const email = form.elements["email"];
+  const phone = form.elements["phone"];
+
+  if(f_name.value.trim().length < 2){
+    console.log("First name is to short");
+    let error = document.createElement("small");
+    error.innerHTML = `First name is to short`;
+    f_name.insertAdjacentElement("afterend", error);
+    // setTimeout(()=>{
+    //   error.remove();
+    // },2000)
+    f_name.addEventListener("keydown",(e)=>{
+      error.remove();
+    })
+    f_name.focus();
+  }
+
 })

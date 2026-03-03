@@ -130,6 +130,15 @@ input[type="checkbox"] {
     background-color: #dc3545;
     color: white;
 }
+button[type="submit"]:hover {
+    background-color: #334155;
+}
+
+button[type="reset"] {
+    background-color: transparent;
+    color: #64748b;
+    text-decoration: underline;
+}
 
 /* ===== Multiple Select Box ===== */
 select[multiple] {
@@ -151,7 +160,7 @@ select[multiple] {
   </head>
   <body>
     <h1>Job-Application</h1>
-    <form action="/" name="job-application" method="get" >
+    <form action="/" name="job-application" method="get" id="job-application" novalidate>
       <!-- Basic-info -->
         <fieldset name="basic-detsils">
         <legend>Basic Detail</legend>
@@ -167,7 +176,7 @@ select[multiple] {
             </td>
           </tr>
           <tr>
-            <td><label for="designation">Designation :</label><input type="text" min="2"/></td>
+            <td><label for="designation">Designation :</label><input type="text" name ="designation" min="2"/></td>
             <td><label for="address_1">Address 1 : </label><textarea name="address_1" rows="1"></textarea></td>
           </tr>
           <tr>
@@ -195,7 +204,7 @@ select[multiple] {
           <tr>
             <td rowspan="2">
                 <label for="relationship_status">RelationShip Satus :</label>
-                <select name="relationship_status">
+                <select name="relationship_status" required>
                     <option value="single">Single</option>
                     <option value="married">Married</option>
                     <option value="divorced">Divorced</option>
@@ -215,7 +224,7 @@ select[multiple] {
         </table>
       </fieldset>
       <!-- Edu - info -->
-       <fieldset name="education-detail">
+       <fieldset>
         <legend>Education Detail</legend>
             <table id="edu">
                 <tr>
@@ -272,14 +281,14 @@ select[multiple] {
             <legend>Reference Contact</legend>
             <table id = "ref">
                 <tr>
-                    <td><label for="name">Name : </label><input type="text" name="ref_name" id="ref_name"></td>
-                    <td><label for="contact">Contact : </label><input type="text" name="ref_con" id="ref_con"></td>
-                    <td><label for="Relation">Relationship : </label><input type="text" name="ref_rel" id="ref_rel"></td>
+                    <td><label for="name">Name : </label><input type="text" name="ref_name_1" ></td>
+                    <td><label for="contact">Contact : </label><input type="text" name="ref_con_1" ></td>
+                    <td><label for="Relation">Relationship : </label><input type="text" name="ref_rel_1" ></td>
                 </tr>
                 <tr>
-                    <td><label for="name">Name : </label><input type="text" name="ref_name" id="ref_name"></td>
-                    <td><label for="contact">Contact : </label><input type="text" name="ref_con" id="ref_con"></td>
-                    <td><label for="Relation">Relationship : </label><input type="text" name="ref_rel" id="ref_rel"></td>
+                    <td><label for="name">Name : </label><input type="text" name="ref_name_2" ></td>
+                    <td><label for="contact">Contact : </label><input type="text" name="ref_con_2" ></td>
+                    <td><label for="Relation">Relationship : </label><input type="text" name="ref_rel_2" ></td>
                 </tr>
             </table>
           </fieldset>
@@ -290,7 +299,7 @@ select[multiple] {
             <table id="pre">
                 <tr>
                     <td rowspan="3"><label for="preferd_location">Preferd location :</label>
-                        <select name="preferd_location" id="prefered_location" multiple size="4"> 
+                        <select name="preferd_location" id="prefered_location" multiple size="2"> 
                             <option value="city_1" selected>Ahm</option>
                             <option value="city_2" selected>Gandhinagar</option>
                             <option value="city_3">Gandhinagar</option>
@@ -326,6 +335,7 @@ select[multiple] {
 
             </table>
            </fieldset>
+           <div id="errorBox"></div>
            <button type="submit">SUBMIT FORM</button>
            <button type="reset">RESET FORM</button>
     </form>
