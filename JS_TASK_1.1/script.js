@@ -10,6 +10,10 @@ let game = document.getElementById("game");
 let time_left = 60;
 let time_display = document.getElementById("time");
 let x;
+let h_score = Number(localStorage.getItem("h-score")) || 0;
+let h_score_display = document.getElementById("high-score");
+h_score_display.innerHTML = `<h2>high score : ${h_score}</h2>`;
+
 
 
 function createTable() {
@@ -57,7 +61,7 @@ function start_timer(){
 }
 
 function reset_game(){
-
+  
   clearInterval(x); 
   size = 2;
   level = 60;
@@ -72,6 +76,11 @@ table.addEventListener("click", (e) => {
     if (size < max_size) {
       size++;
       score++;
+      if(h_score < score){
+        h_score = score; 
+        localStorage.setItem("h-score", h_score);
+        h_score_display.innerText = h_score;
+      }
       level = Math.max(10, level - 4);
       createTable();
       score_diplay.innerHTML= `<h2>Score : ${score}<h2>`;
