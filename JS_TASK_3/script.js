@@ -110,31 +110,31 @@ function showError(message) {
     errorDiv.innerHTML += `<p>${message}</p>`;
 }
 
-const form = document.getElementById("job-application");
+// const form = document.getElementById("job-application");
 
-form.addEventListener("submit",(e)=>{
-  e.preventDefault();
+// form.addEventListener("submit",(e)=>{
+//   e.preventDefault();
 
-  //val for basic info
-  const f_name = form.elements["f_name"];
-  const l_name = form.elements["l_name"];
-  const designation = form.elements["designation"];
-  const address_1 = form.elements["address_1"];
-  const email = form.elements["email"];
-  const phone = form.elements["phone"];
+//   //val for basic info
+//   const f_name = form.elements["f_name"];
+//   const l_name = form.elements["l_name"];
+//   const designation = form.elements["designation"];
+//   const address_1 = form.elements["address_1"];
+//   const email = form.elements["email"];
+//   const phone = form.elements["phone"];
 
-  if(f_name.value.trim().length < 2){
-    console.log("First name is to short");
-    let error = document.createElement("small");
-    error.innerHTML = `First name is to short`;
-    f_name.insertAdjacentElement("afterend", error);
-    // setTimeout(()=>{
-    //   error.remove();
-    // },2000)
-    f_name.addEventListener("keydown",(e)=>{
-      error.remove();
-    })
-    f_name.focus();
-  }
+//   if(f_name.value.trim().length < 2){
+//     console.log("First name is to short");
+//     let error = document.createElement("small");
+//     error.innerHTML = `First name is to short`;
+//     f_name.insertAdjacentElement("afterend", error);
+//     // setTimeout(()=>{
+//     //   error.remove();
+//     // },2000)
+//     f_name.addEventListener("keydown",(e)=>{
+//       error.remove();
+//     })
+//     f_name.focus();
+//   }
 
-})
+// })
