@@ -1,4 +1,3 @@
-
 const eduTable = document.getElementById("edu");
 const addEduBtn = document.getElementById("add_edu");
 const delEduBtn = document.getElementById("del_edu");
@@ -19,8 +18,15 @@ addEduBtn.addEventListener("click", function (e) {
     <td><input type="text" name="education[${eduIndex}][result]" required></td>
   `;
   console.log(row);
-
+  
   tbody.appendChild(row);
+  // const courseInputs = form.querySelectorAll(
+  //   'input[name^="education"][name$="[course]"]',
+  // );
+  // console.log(courseInputs);
+  // courseInputs.forEach(e =>{
+  //  console.log(e);
+  // })
   eduIndex++;
 });
 
@@ -30,14 +36,11 @@ delEduBtn.addEventListener("click", function (e) {
   const tbody = eduTable.querySelector("tbody");
   const rows = tbody.querySelectorAll("tr");
 
-
   if (rows.length > 2) {
     tbody.removeChild(rows[rows.length - 1]);
     eduIndex--;
   }
 });
-
-
 
 const workTable = document.getElementById("work");
 const addWorkBtn = document.getElementById("add_work");
@@ -78,91 +81,134 @@ delWorkBtn.addEventListener("click", function (e) {
   }
 });
 
-
-
 const tech_table = document.getElementById("tech");
 
-const skills = ["PHP" ,"JAVA" , "SQL","Node"];
+const skills = ["PHP", "JAVA", "SQL", "Node"];
 
-skills.forEach(element => {
-    const row = tech_table.insertRow(-1);
-    row.innerHTML = `<td><input type="checkbox" name="${element}"="${element}"> ${element} </input></td>
-                    <td><input type="radio" name="${element}_level = "Beginer">Beginer</td>
-                    <td><input type="radio" name="${element}_level = "Mideator">Mideator</td>
-                    <td><input type="radio" name="${element}_level = "Expert">Expert</td>`
+skills.forEach((element) => {
+  const row = tech_table.insertRow(-1);
+  row.innerHTML = `<td><input type="checkbox" name="skills[${skills.indexOf(element)}]" value="${element}"> ${element} </input></td>
+                    <td><input type="radio" name="${element}_level" value= "Beginer" disabled>Beginer</td>
+                    <td><input type="radio" name="${element}_level" value= "Mideator" disabled>Mideator</td>
+                    <td><input type="radio" name="${element}_level" value= "Expert" disabled>Expert</td>`;
+});
+
+//enable radio buttons when skill is checked
+skills.forEach((element) => {
+  const skillCheckbox = document.querySelector(`input[name="skills[${skills.indexOf(element)}]"][value="${element}"]`);
+  const levelRadios = document.querySelectorAll(
+    `input[name="${element}_level"]`,
+  );
+
+  skillCheckbox.addEventListener("change", function () {
+    if (this.checked) {
+      levelRadios.forEach((radio) => (radio.disabled = false));
+    } else {
+      levelRadios.forEach((radio) => {
+        radio.disabled = true;
+        radio.checked = false;
+      });
+    }
+  });
 });
 
 const lang_table = document.getElementById("lang");
-const languages = ["Hindi" , "English" , "Gujarati"];
+const languages = ["Hindi", "English", "Gujarati"];
 
-languages.forEach(e => {
+languages.forEach((e) => {
   const row = lang_table.insertRow(-1);
-  row.innerHTML = `<td><input type="checkbox" name="${e}">${e}</td>
-                    <td><input type="checkbox" name="${e}_read"="${e}_read">Read</td>
-                    <td><input type="checkbox" name="${e}_write"="${e}_write">Write</td>
-                    <td><input type="checkbox" name="${e}_speak"="${e}_speak">Speak</td>`
-})
+  row.innerHTML = `<td><input type="checkbox" name="lang[${e}]">${e}</td>
+                    <td><input type="checkbox" name="lang[${e}][read]" value="lang[${e}][_read]" disabled>Read</td>
+                    <td><input type="checkbox" name="lang[${e}][write]" value="lang[${e}][_write]" disabled>Write</td>
+                    <td><input type="checkbox" name="lang[${e}][speak]" value="lang[${e}][_speak]" disabled>Speak</td>`;
+});
 
+//enable read write speak when language is checked
+languages.forEach((e) => {
 
+  const langCheckbox = document.querySelector(`input[name="lang[${e}]"]`);
+  const readCheckbox = document.querySelector(`input[name="lang[${e}][read]"]`);
+  const writeCheckbox = document.querySelector(`input[name="lang[${e}][write]"]`);
+  const speakCheckbox = document.querySelector(`input[name="lang[${e}][speak]"]`);
 
-function showError(message) {
-    const errorDiv = document.getElementById("errorBox");
-    errorDiv.innerHTML += `<p>${message}</p>`;
-}
+  langCheckbox.addEventListener("change", function () {
 
-const form = document.getElementById("job-application");
+    if (this.checked) {
+      readCheckbox.disabled = false;
+      writeCheckbox.disabled = false;
+      speakCheckbox.disabled = false;
+    } else {
+      readCheckbox.disabled = true;
+      writeCheckbox.disabled = true;
+      speakCheckbox.disabled = true;
 
-form.addEventListener("submit",(e)=>{
-  e.preventDefault();
+      readCheckbox.checked = false;
+      writeCheckbox.checked = false;
+      speakCheckbox.checked = false;
+    }
 
-  //val for basic info
-  const f_name = form.elements["f_name"];
-  const l_name = form.elements["l_name"];
-  const designation = form.elements["designation"];
-  const address_1 = form.elements["address_1"];
-  const email = form.elements["email"];
-  const phone = form.elements["phone"];
+  });
 
-  if(f_name.value.trim().length < 2){
-    console.log("First name is to short");
-    let error = document.createElement("small");
-    error.innerHTML = `First name is to short`;
-    f_name.insertAdjacentElement("afterend", error);
-    // setTimeout(()=>{
-    //   error.remove();
-    // },2000)
-    f_name.addEventListener("keydown",(e)=>{
-      error.remove();
-    })
-    f_name.focus();
-  }
+});
 
-   if(l_name.value.trim().length < 2){
-    // console.log("Last name is to short");
-    let error = document.createElement("small");
-    error.innerHTML = `Last name is to short`;
-    f_name.insertAdjacentElement("afterend", error);
-    // setTimeout(()=>{
-    //   error.remove();
-    // },2000)
-    l_name.addEventListener("keydown",(e)=>{
-      error.remove();
-    })
-    l_name.focus();
-  }
+// function showError(message) {
+//     const errorDiv = document.getElementById("errorBox");
+//     errorDiv.innerHTML += `<p>${message}</p>`;
+// }
 
-   if(address_1.value.trim() === ""){
-    // console.log("First name is to short");
-    let error = document.createElement("small");
-    error.innerHTML = `Address cant be NULL`;
-    address_1.insertAdjacentElement("afterend", error);
-    // setTimeout(()=>{
-    //   error.remove();
-    // },2000)
-    address_1.addEventListener("keydown",(e)=>{
-      error.remove();
-    })
-    address_1.focus();
-  }
+// const form = document.getElementById("job-application");
 
-})
+// form.addEventListener("submit",(e)=>{
+//   e.preventDefault();
+
+//   //val for basic info
+//   const f_name = form.elements["f_name"];
+//   const l_name = form.elements["l_name"];
+//   const designation = form.elements["designation"];
+//   const address_1 = form.elements["address_1"];
+//   const email = form.elements["email"];
+//   const phone = form.elements["phone"];
+
+//   if(f_name.value.trim().length < 2){
+//     console.log("First name is to short");
+//     let error = document.createElement("small");
+//     error.innerHTML = `First name is to short`;
+//     f_name.insertAdjacentElement("afterend", error);
+//     // setTimeout(()=>{
+//     //   error.remove();
+//     // },2000)
+//     f_name.addEventListener("keydown",(e)=>{
+//       error.remove();
+//     })
+//     f_name.focus();
+//   }
+
+//    if(l_name.value.trim().length < 2){
+//     // console.log("Last name is to short");
+//     let error = document.createElement("small");
+//     error.innerHTML = `Last name is to short`;
+//     f_name.insertAdjacentElement("afterend", error);
+//     // setTimeout(()=>{
+//     //   error.remove();
+//     // },2000)
+//     l_name.addEventListener("keydown",(e)=>{
+//       error.remove();
+//     })
+//     l_name.focus();
+//   }
+
+//    if(address_1.value.trim() === ""){
+//     // console.log("First name is to short");
+//     let error = document.createElement("small");
+//     error.innerHTML = `Address cant be NULL`;
+//     address_1.insertAdjacentElement("afterend", error);
+//     // setTimeout(()=>{
+//     //   error.remove();
+//     // },2000)
+//     address_1.addEventListener("keydown",(e)=>{
+//       error.remove();
+//     })
+//     address_1.focus();
+//   }
+
+// })
