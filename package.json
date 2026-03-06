@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Bhavik-Sanghar/JS#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mysql2": "^3.19.0",
+    "sql2": "^0.0.1"
   }
 }

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS_function_Test</title>
+    <style>
+      .wrapper {
+        padding: 10px;
+        margin: 10px;
+        display: grid;
+        grid-template-columns: repeat(8,1fr); 
+        grid-template-rows: auto auto; /* Rows size dynamically to content */
+        gap: 50px; /* 10px space between items */
+        place-items: center;
+      }
+      .cell {
+        padding: 10px;
+        display: grid;
+        place-items: center;
+        border: 1px solid red;
+        width: 100%;
+        height: 100px;
+      }
+      .my_img{
+        height: inherit;
+        width: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="cell" id="on_click">ON Click event click here to change BG</div>
+      <div class="cell" id="on_double_click">Double click here to get a butterfly :)</div>
+      <div class="cell" id="mouse_down">Mouse Down Event :()</div>
+      <div class="cell" id="mouse_up">Mouse up Event :></div>
+      <div class="cell" id="mouse_move">Mouse Move event</div>
+      <div class="cell" id="mouse_over">Mouse Over</div>
+      <div class="cell" id="mouse_out">Mouse Out .... </div>
+      <div class="cell" id="mouse_enter">Mouse Enter...</div>
+      <div class="cell" id="mouse_leave">Mouse Leave</div>
+      <div class="cell" id="mouse_contextmenu">Mouse Contextmenu</div>
+      <div class="cell" id="mouse_wheel">Mouse Wheel event ;) </div>
+      <div class="cell" id="keyboard_down">Keyboard Down <input type="text" name="" id=""></div>
+      <div class="cell" id="keyboard_up">Keyboard UP <input type="text" name="" id=""></div>
+      <div class="cell" id="keyboard_press">Keyboard Press <input type="" name="" id=""> </div>
+      <div class="cell" id="on_load">On Load 
+        <!-- <img id="my_image" src="https://imgs.search.brave.com/weILiAx7QgK8m5Bi_X5w3HysdbLx3F_l3_Tw8R_jMR4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci83NDkv/ODgzL0hELXdhbGxw/YXBlci1kb3JhZW1v/bi13YWxhLWxpdHRl/bC1oZWFydC1kb3Jl/bW9uLWFuaW1lLWNh/cnRvb24tdGh1bWJu/YWlsLmpwZw"></img> -->
+      </div>
+      <div class="cell" id="blur"> Blur Event<input type="text" name="" id="blur_example"> </div>
+      <div class="cell" id="focus"> Focus Event<input type="text" name="" id="focus_example"> </div>
+      <div class="cell" id=""> </div>
+      <div class="cell" id=""> </div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">200</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">200</div>
+      <div class="cell">200</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+      <div class="cell">20</div>
+    </div>
+    <script src="js_event.js"></script>
+  </body>
+</html>

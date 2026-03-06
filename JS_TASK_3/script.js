@@ -4,6 +4,11 @@ const delEduBtn = document.getElementById("del_edu");
 
 let eduIndex = 0;
 
+
+const languages = ["Hindi", "English", "Gujarati"];
+const skills = ["PHP", "JAVA", "SQL", "Node"];
+
+
 addEduBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -83,73 +88,138 @@ delWorkBtn.addEventListener("click", function (e) {
 
 const tech_table = document.getElementById("tech");
 
-const skills = ["PHP", "JAVA", "SQL", "Node"];
 
-skills.forEach((element) => {
+skills.forEach((tech) => {
+
   const row = tech_table.insertRow(-1);
-  row.innerHTML = `<td><input type="checkbox" name="skills[${skills.indexOf(element)}]" value="${element}"> ${element} </input></td>
-                    <td><input type="radio" name="${element}_level" value= "Beginer" disabled>Beginer</td>
-                    <td><input type="radio" name="${element}_level" value= "Mideator" disabled>Mideator</td>
-                    <td><input type="radio" name="${element}_level" value= "Expert" disabled>Expert</td>`;
-});
 
-//enable radio buttons when skill is checked
-skills.forEach((element) => {
-  const skillCheckbox = document.querySelector(`input[name="skills[${skills.indexOf(element)}]"][value="${element}"]`);
-  const levelRadios = document.querySelectorAll(
-    `input[name="${element}_level"]`,
-  );
+  row.innerHTML = `
+    <td>
+      <input type="checkbox" class="tech-main" data-tech="${tech}" 
+      name="technologies[${tech.toLowerCase()}][selected]" value="${tech}"> ${tech}
+    </td>
 
-  skillCheckbox.addEventListener("change", function () {
-    if (this.checked) {
-      levelRadios.forEach((radio) => (radio.disabled = false));
-    } else {
-      levelRadios.forEach((radio) => {
-        radio.disabled = true;
-        radio.checked = false;
-      });
-    }
-  });
+    <td>
+      <input type="radio" class="tech-level" data-tech="${tech}" 
+      name="technologies[${tech.toLowerCase()}][level]" value="Beginner" disabled> Beginner
+    </td>
+
+    <td>
+      <input type="radio" class="tech-level" data-tech="${tech}" 
+      name="technologies[${tech.toLowerCase()}][level]" value="Intermediate" disabled> Intermediate
+    </td>
+
+    <td>
+      <input type="radio" class="tech-level" data-tech="${tech}" 
+      name="technologies[${tech.toLowerCase()}][level]" value="Expert" disabled> Expert
+    </td>
+  `;
+
 });
 
 const lang_table = document.getElementById("lang");
-const languages = ["Hindi", "English", "Gujarati"];
 
 languages.forEach((e) => {
+
   const row = lang_table.insertRow(-1);
-  row.innerHTML = `<td><input type="checkbox" name="lang[${e}]">${e}</td>
-                    <td><input type="checkbox" name="lang[${e}][read]" value="lang[${e}][_read]" disabled>Read</td>
-                    <td><input type="checkbox" name="lang[${e}][write]" value="lang[${e}][_write]" disabled>Write</td>
-                    <td><input type="checkbox" name="lang[${e}][speak]" value="lang[${e}][_speak]" disabled>Speak</td>`;
+
+  row.innerHTML = `
+    <td>
+      <input type="checkbox" class="lang-main" data-lang="${e}" name="languages[${e.toLowerCase()}][selected]"> ${e}
+    </td>
+
+    <td>
+      <input type="checkbox" class="lang-level" data-lang="${e}" name="languages[${e.toLowerCase()}][read]" disabled> Read
+    </td>
+
+    <td>
+      <input type="checkbox" class="lang-level" data-lang="${e}" name="languages[${e.toLowerCase()}][write]" disabled> Write
+    </td>
+
+    <td>
+      <input type="checkbox" class="lang-level" data-lang="${e}" name="languages[${e.toLowerCase()}][speak]" disabled> Speak
+    </td>
+  `;
 });
 
-//enable read write speak when language is checked
-languages.forEach((e) => {
+document.addEventListener("change", function(e){
 
-  const langCheckbox = document.querySelector(`input[name="lang[${e}]"]`);
-  const readCheckbox = document.querySelector(`input[name="lang[${e}][read]"]`);
-  const writeCheckbox = document.querySelector(`input[name="lang[${e}][write]"]`);
-  const speakCheckbox = document.querySelector(`input[name="lang[${e}][speak]"]`);
+  if(e.target.classList.contains("lang-main")){
 
-  langCheckbox.addEventListener("change", function () {
+    const lang = e.target.dataset.lang;
 
-    if (this.checked) {
-      readCheckbox.disabled = false;
-      writeCheckbox.disabled = false;
-      speakCheckbox.disabled = false;
-    } else {
-      readCheckbox.disabled = true;
-      writeCheckbox.disabled = true;
-      speakCheckbox.disabled = true;
+    const levels = document.querySelectorAll(
+      `.lang-level[data-lang="${lang}"]`
+    );
 
-      readCheckbox.checked = false;
-      writeCheckbox.checked = false;
-      speakCheckbox.checked = false;
-    }
+    levels.forEach(level => {
+      level.disabled = !e.target.checked;
 
-  });
+      if(!e.target.checked){
+        level.checked = false;
+      }
+    });
+
+  }
+
+  if(e.target.classList.contains("tech-main")){
+
+    const tech = e.target.dataset.tech;
+
+    const levels = document.querySelectorAll(
+      `.tech-level[data-tech="${tech}"]`
+    );
+
+    levels.forEach(level => {
+
+      level.disabled = !e.target.checked;
+
+      if(!e.target.checked){
+        level.checked = false;
+      }
+
+    });
+
+  }
 
 });
+
+
+// languages.forEach((e) => {
+//   const row = lang_table.insertRow(-1);
+//   row.innerHTML = `<td><input type="checkbox" name="lang[${e}]">${e}</td>
+//                     <td><input type="checkbox" name="lang[${e}][read]" value="lang[${e}][read]" disabled>Read</td>
+//                     <td><input type="checkbox" name="lang[${e}][write]" value="lang[${e}][write]" disabled>Write</td>
+//                     <td><input type="checkbox" name="lang[${e}][speak]" value="lang[${e}][speak]" disabled>Speak</td>`;
+// });
+
+// //enable read write speak when language is checked
+// languages.forEach((e) => {
+
+//   const langCheckbox = document.querySelector(`input[name="lang[${e}]"]`);
+//   const readCheckbox = document.querySelector(`input[name="lang[${e}][read]"]`);
+//   const writeCheckbox = document.querySelector(`input[name="lang[${e}][write]"]`);
+//   const speakCheckbox = document.querySelector(`input[name="lang[${e}][speak]"]`);
+
+//   langCheckbox.addEventListener("change", function () {
+
+//     if (this.checked) {
+//       readCheckbox.disabled = false;
+//       writeCheckbox.disabled = false;
+//       speakCheckbox.disabled = false;
+//     } else {
+//       readCheckbox.disabled = true;
+//       writeCheckbox.disabled = true;
+//       speakCheckbox.disabled = true;
+
+//       readCheckbox.checked = false;
+//       writeCheckbox.checked = false;
+//       speakCheckbox.checked = false;
+//     }
+
+//   });
+
+// });
 
 // function showError(message) {
 //     const errorDiv = document.getElementById("errorBox");
