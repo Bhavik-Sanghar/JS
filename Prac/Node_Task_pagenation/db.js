@@ -1,45 +1,49 @@
-const mysql = require('mysql2/promise'); 
+const mysql = require("mysql2/promise");
 
-async function getData(page , limit) {
+async function getData(page, limit, sort_by, sort_flag) {
+  const db = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "students",
+  });
 
-const db = await mysql.createConnection({
-    host : "localhost",
-    user : "root",
-    password : "root",
-    database : "students"
-});
+  const offset = (page - 1) * limit;
 
+  const query = `SELECT * FROM student_data ORDER BY ? ? limit ? offset ? `;
 
-    const offset = (page - 1) * limit;
-
-    const query = `SELECT * FROM student_data limit ? offset ? `;
-
-    const [rows] = await db.query(query , [limit , offset]);
-
-    // console.log(rows);
-
+  if (sort_flag == 0) {
+    flag = "ASC";
+    const [rows] = await db.query(query, [sort_by, flag, limit, offset]);
     return rows;
+  }
+  else{
+    flag = "DESC";
+    const [rows] = await db.query(query, [sort_by, flag, limit, offset]);
+    return rows;
+  }
+
+  // console.log(rows);
+
 }
 
 async function getTotal() {
+  const db = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "students",
+  });
 
-const db = await mysql.createConnection({
-    host : "localhost",
-    user : "root",
-    password : "root",
-    database : "students"
-});
+  const query = `SELECT COUNT(*) as total FROM student_data`;
 
+  const [rows] = await db.query(query);
 
-    const query = `SELECT COUNT(*) as total FROM student_data`;
+  // console.log(rows);
 
-    const [rows] = await db.query(query);
-
-    // console.log(rows);
-
-    return rows[0].total;
+  return rows[0].total;
 }
 
 // getData(1,10);
 
-module.exports = {getData , getTotal}
+module.exports = { getData, getTotal };
