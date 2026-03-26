@@ -1,0 +1,22 @@
+
+table{
+    padding: 20px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+td,th{
+    border: 2px solid black;
+    width: 75vw;
+    text-align: center;
+}
+
+tr:hover{
+    /* transform: scale(1.02); */
+    background-color: antiquewhite;
+}
+
+#pagenation_div{
+    padding: 20px;
+}
+

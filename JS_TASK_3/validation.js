@@ -162,6 +162,7 @@ form.addEventListener("submit", (e) => {
     referenceValid
   ) {
     form.submit();
+    form.reset();
   }
 });
 

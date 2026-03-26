@@ -116,11 +116,11 @@ btn.addEventListener("click" ,(e) =>{
     if(is_pause){
         btn.innerText = "Pause"
         is_pause = false
-        table.classList.remove("disable-table")
+        table.classList.remove(".disable-table")
     }else{
         btn.innerText = "Resume"
         is_pause = true;
-        table.classList.add("disable-table")
+        table.classList.add(".disable-table")
     }
 })
 

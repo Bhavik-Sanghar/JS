@@ -7,13 +7,13 @@ const PORT = 3000;
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-app.post("/submit", (req, res) => {
+app.post("/submit", async (req, res) => {
 
   const formData = req.body;
 
   console.log(formData);
 
-  insertApplicant(formData, (err, result) => {
+  await insertApplicant(formData, (err, result) => {
 
     if (err) {
       console.error(err);
@@ -28,3 +28,5 @@ app.post("/submit", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+

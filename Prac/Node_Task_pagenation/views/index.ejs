@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagenation Task</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- <H1>Hello Welcome !! </H1> -->
+
+    <div id="main">
+        <table>
+            <tr>
+                <th id="sort_id">ID</th>
+                <th id="sort_name">FULL NAME</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th id="sort_dob">DOB</th>
+                <th>Gender</th>
+                <th id="sort_city">City</th>
+            </tr>
+            <% student_data.forEach(s => { %>
+                <tr>
+                    <td><%= s.id %></td>
+                    <td><%= s.first_name %> <%= s.last_name %></td>
+                    <td><%= s.email %> </td>
+                    <td><%= s.phone %> </td>
+                    <td><%= s.dob.toISOString().slice(0, 10) %></td>
+                    <td><%= s.gender == 0 ? "Female" : "Male" %></td>
+                    <td><%= s.city %> </td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+    <div id="pagenation_div">
+        <table id="pagenation">
+            <tr>
+                <td id="first_page">&lt&lt</td>
+                <td id="prev_page">&lt</td>
+                <td id="current_page">
+                    <%= data.current_page %>
+                </td>
+                <td id="next_page">&gt</td>
+                <td id="last_page">&gt&gt</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    data = <%- JSON.stringify(data) %>
+</script>
+<script src="js/script.js"></script>
+
+</html>
